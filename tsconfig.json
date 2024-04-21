@@ -11,7 +11,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "skipLibCheck": true,
 
     /* Linting */
@@ -27,7 +27,6 @@
   },
   "include": [
     "**/*.d.ts",
-    "resources/**/*.tsx",
     "resources/**/*.jsx",
     "resources/**/*.js",
     "resources/**/*.ts",
