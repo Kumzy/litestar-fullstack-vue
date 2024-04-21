@@ -1,7 +1,7 @@
 <template>
   <div class="grid grid-cols-4 gap-4">
     <div class="col-span-2">
-
+      {{ user?.name}}
       <router-view>
 
       </router-view>
