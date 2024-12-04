@@ -7,7 +7,7 @@ from app.domain.accounts.controllers import AccessController, UserController, Us
 from app.domain.system.controllers import SystemController
 from app.domain.tags.controllers import TagController
 from app.domain.teams.controllers import TeamController, TeamMemberController
-from app.domain.web.controllers import WebController
+# from app.domain.web.controllers import WebController
 
 if TYPE_CHECKING:
     from litestar.types import ControllerRouterHandler
@@ -22,5 +22,5 @@ route_handlers: list[ControllerRouterHandler] = [
     TeamMemberController,
     TagController,
     SystemController,
-    WebController,
+    # WebController,
 ]

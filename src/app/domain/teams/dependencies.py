@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from sqlalchemy.orm import joinedload, noload, selectinload
+from sqlalchemy import select
 
 from app.db.models import Team, TeamInvitation, TeamMember
 from app.domain.teams.services import TeamInvitationService, TeamMemberService, TeamService
@@ -22,12 +23,20 @@ async def provide_teams_service(db_session: AsyncSession) -> AsyncGenerator[Team
     """Construct repository and service objects for the request."""
     async with TeamService.new(
         session=db_session,
-        load=[
+        statement=select(Team)
+        .order_by(Team.name)
+        .options(
             selectinload(Team.tags),
             selectinload(Team.members).options(
                 joinedload(TeamMember.user, innerjoin=True),
             ),
-        ],
+        )
+        # load=[
+        #     selectinload(Team.tags),
+        #     selectinload(Team.members).options(
+        #         joinedload(TeamMember.user, innerjoin=True),
+        #     )
+        # ],
     ) as service:
         yield service
 
